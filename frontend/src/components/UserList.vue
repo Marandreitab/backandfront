@@ -1,4 +1,5 @@
-<template>
+<!-- src/components/UserList.vue -->
+  <template>
     <v-card>
       <v-card-item>
         <v-card-title>
@@ -34,10 +35,9 @@
 
 <script setup>
 import { ref } from 'vue'
-import MainButton from './buttons/MainButton.vue'
-
-import MyDialog from './MyDialog.vue'
-
+  import MainButton from './buttons/MainButton.vue'
+  import MyDialog from './myDialog/MyDialog.vue'
+  
 const showDialog = ref(false)
 const headers = ref([
     {
