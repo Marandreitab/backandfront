@@ -16,19 +16,11 @@
             placeholder="johndoe@gmail.com"
           type="email"
           ></v-text-field>
-          <v-text-field
-        v-model="password"
-        :label="label"
-        :placeholder="placeholder"
-        :type="showPassword ? 'text' : 'password'"
-        :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
-        @click:append="toggleShowPassword"
-  
-        ></v-text-field>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <MainButton  color="indigo-darken-3" @click="dialog = false" label="Cancel"></MainButton>
+        <v-btn  @click="dialog = false" color="blue-grey-darken-3"> Cancel </v-btn>
+
           <MainButton color="blue darken-1" @click="dialog = false" label="Save"></MainButton>
           
         </v-card-actions>
@@ -51,12 +43,12 @@
   
   const dialog = ref(props.modelValue)
   //dis is for function password
-  const password = ref('')
-  const showPassword = ref(false)
+  //const password = ref('')
+  //const showPassword = ref(false)
 
-  const toggleShowPassword = () => {
-  showPassword.value = !showPassword.value
-}
+  ///const toggleShowPassword = () => {
+ // showPassword.value = !showPassword.value
+//}
   watch(() => props.modelValue, (val) => {
     dialog.value = val
   })
