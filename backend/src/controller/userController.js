@@ -22,6 +22,19 @@ export const createUser = async (
 ) => {
     const { name, email } = req.body
 
+    const isEmailExisting = await prisma.user.findFirst({
+        where: {
+            email,
+        }
+    })
+
+    if(isEmailExisting){
+        return res.status(400).json({
+            message: 'Email already exist',
+            data: isEmailExisting,
+        });
+    }
+
     const createdUser = await prisma.user.create({
         data: {
             name,
@@ -30,7 +43,7 @@ export const createUser = async (
     })
 
     res.status(200).json({
-        message: 'user created',
+        message: 'User was created successfully',
         data: createdUser,
     });
 }
@@ -60,10 +73,27 @@ export const updateUser = async (
     res,
     next
 ) => {
-    
     const id = parseInt(req.params.id)
     const { name, email } = req.body
-    
+
+    const isEmailExisting = await prisma.user.findFirst({
+        where: {
+            email,
+            AND: {
+                id: {
+                    not: id
+                }
+            }
+        }
+        
+    })
+
+    if(isEmailExisting){
+        return res.status(400).json({
+            message: 'Email already exist',
+            data: isEmailExisting,
+        });
+    }
     const updateUser = await prisma.user.update({
         where: {
             id: id
@@ -75,7 +105,7 @@ export const updateUser = async (
     })
 
     res.status(200).json({
-        message: 'user updateUser',
+        message: 'User Update Successfully',
         data: updateUser,
     });
 }
