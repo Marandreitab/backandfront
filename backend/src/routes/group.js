@@ -3,6 +3,6 @@ const groupRouter = Router();
 
 import { getAllUsers } from "../controller/userController.js";
 
-groupRouter.get('/all', getAllUsers)
+groupRouter.get('/', getAllUsers)
 
 export default groupRouter

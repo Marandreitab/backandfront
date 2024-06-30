@@ -1,25 +1,15 @@
 
 <template>
-  <v-btn class="ma-1" elevation="0" :color="color">{{ label }}</v-btn>
-  
+  <v-btn class="ma-1" elevation="0" col>
+    <slot></slot>
+  </v-btn>
 </template>
 
 <script setup>
-
 import { ref } from 'vue';
 
-defineProps({
-  label: {
-      type: String,
-      default() {
-          return ''
-      }
-  },
-  color: {
-      type: String,
-      default() {
-          return 'primary'
-      }
-  }
-})
+defineOptions({
+  inheritAttrs: true,
+});
+
 </script>
